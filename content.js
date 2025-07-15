@@ -97,7 +97,7 @@
   async function tickGenericSheet() {
     const solved = await getSolvedQuestions();
     const links = Array.from(document.querySelectorAll("a")).filter((a) =>
-      a.href.includes("/problems/")
+      a.href.includes("leetcode.com/problems/")
     );
     links.forEach((link) => {
       // Match both with and without trailing slash
