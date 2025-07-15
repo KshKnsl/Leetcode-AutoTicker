@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "LeetCode Auto Ticker",
+  "version": "1.0",
+  "description": "Automatically ticks solved questions on LeetCode sheets (e.g., Take U Forward)",
+  "permissions": ["scripting", "storage", "activeTab"],
+  "host_permissions": ["https://leetcode.com/*", "*://*/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
+}
