@@ -1,6 +1,9 @@
-
-chrome.runtime.onInstalled.addListener(() => {
-    console.log('LeetCode Auto Ticker installed');
+chrome.action.onClicked.addListener(() => {
+    chrome.tabs.query({}, function(tabs) {
+        tabs.forEach(tab => {
+            chrome.tabs.sendMessage(tab.id, { type: "refreshLeetcodeSolved" });
+        });
+    });
 });
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {

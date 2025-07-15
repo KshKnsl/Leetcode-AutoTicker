@@ -89,7 +89,7 @@
   }
 
   async function tickGenericSheet() {
-    if (window.location.href === "https://leetcode.com/problemset/") {
+    if (window.location.href.includes("https://leetcode.com/problemset/") || window.location.href.includes("https://leetcode.com/problems/")) {
       return;
     }
     const solved = await getSolvedQuestions();
@@ -131,6 +131,14 @@
     if (message && message.type === "refreshTufSheet") {
       tickSolved(true);
       sendResponse({ status: "refreshed" });
+    }
+    if (message && message.type === "refreshLeetcodeSolved") {
+      chrome.runtime.sendMessage({ type: "getSolvedQuestions" }, function(response) {
+        if (response && Array.isArray(response.solved)) {
+          localStorage.setItem("lc_solved", JSON.stringify(response.solved));
+        }
+        tickSolved(true);
+      });
     }
   });
 })();
