@@ -35,14 +35,11 @@
           questions = tufData.sheetData.flatMap(step => Array.isArray(step.topics) ? step.topics : []);
         }
         localStorage.setItem("tuf_sheet_data", JSON.stringify(questions));
-        console.log('[TUF] Set tuf_sheet_data in localStorage:', questions);
         tufData = questions;
       } catch (e) {
-        console.log("Failed to fetch TUF sheet data", e);
         return;
       }
     }
-    console.log("[TUF] Backend data:", tufData);
     showTufBackendData(tufData);
   }
 
@@ -56,12 +53,10 @@
         let safeId = typeof CSS !== 'undefined' && CSS.escape ? CSS.escape(q.id) : q.id.replace(/([\.\#\:\[\]\,\=\$\^])/g, '\$1');
         const checkboxes = document.querySelectorAll(`td > input[type="checkbox"]#${safeId}`);
         if (checkboxes.length === 0) {
-          console.log(`[TUF] No <td> found for question id ${q.id}`);
         }
         checkboxes.forEach(cb => {
           const td = cb.parentElement;
           if (td) {
-            console.log(`[TUF] Found <td> for question id ${q.id}:`, td, q);
             const parent = td.parentElement;
             if (parent && !parent.querySelector('.tuf-data-raw')) {
               const info = document.createElement('pre');
@@ -87,7 +82,6 @@
                   }
                 });
               });
-              console.log(`[TUF] Displayed backend data for question id ${q.id}`);
             }
           }
         });
@@ -95,6 +89,9 @@
   }
 
   async function tickGenericSheet() {
+    if (window.location.href === "https://leetcode.com/problemset/") {
+      return;
+    }
     const solved = await getSolvedQuestions();
     const links = Array.from(document.querySelectorAll("a")).filter((a) =>
       a.href.includes("leetcode.com/problems/")
