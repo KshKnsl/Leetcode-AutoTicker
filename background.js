@@ -1,12 +1,18 @@
-chrome.action.onClicked.addListener(() => {
-    chrome.tabs.query({}, function(tabs) {
+
+// Use browser-polyfill for cross-browser compatibility
+if (typeof browser === 'undefined') {
+  var browser = chrome;
+}
+
+browser.action.onClicked.addListener(() => {
+    browser.tabs.query({}).then((tabs) => {
         tabs.forEach(tab => {
-            chrome.tabs.sendMessage(tab.id, { type: "refreshLeetcodeSolved" });
+            browser.tabs.sendMessage(tab.id, { type: "refreshLeetcodeSolved" });
         });
     });
 });
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === 'getSolvedQuestions') {
         fetch('https://leetcode.com/api/problems/all/')
             .then(resp => resp.json())
@@ -20,4 +26,5 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
             .catch(() => sendResponse({ solved: [] }));
         return true;
     }
+    return false;
 });

@@ -1,9 +1,14 @@
+// Use browser-polyfill for cross-browser compatibility
+if (typeof browser === 'undefined') {
+  var browser = chrome;
+}
+
 (function () {
   function getSolvedQuestions() {
     return new Promise((resolve) => {
       let solved = JSON.parse(localStorage.getItem("lc_solved") || "[]");
       if (solved.length) return resolve(solved);
-      chrome.runtime.sendMessage(
+      browser.runtime.sendMessage(
         { type: "getSolvedQuestions" },
         function (response) {
           if (response && Array.isArray(response.solved)) {
