@@ -7,13 +7,13 @@ LeetCode Auto Ticker is a Chrome extension that automatically marks (✔️) the
 ### Features
 - Automatically ticks solved LeetCode problems on any website
 - Enhanced UI for Take U Forward sheets: shows quick access buttons to GFG and Coding Ninja solutions
-- Beautiful, responsive design with Tailwind CSS and dark mode support
+- Click on the extension logo in the extension bar to refresh the solved status
 - No popup required—just install and enjoy
-
+- No login or leetcode id required to be set up
 
 ### How It Works
 - The extension tracks your solved problems and updates the UI wherever LeetCode problem links appear
-- For Take U Forward sheets, it fetches backend data and displays solution buttons with SVG icons
+- For Take U Forward sheets, it fetches backend data and displays GFG and Coding Ninja Links too
 - Works seamlessly on LeetCode Discuss, blogs, and more
 
 ### Demo
@@ -31,7 +31,6 @@ LeetCode Auto Ticker is a Chrome extension that automatically marks (✔️) the
 - Make sure you are logged in to LeetCode in your browser for the extension to work correctly
 - Browse any supported site
 - Solved problems will be ticked automatically
-- On Take U Forward sheets, use the solution buttons for quick access
 
 ### License
 MIT

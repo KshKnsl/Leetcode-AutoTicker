@@ -8,11 +8,16 @@
   "background": {
     "service_worker": "background.js"
   },
+  "icons": {
+    "16": "image16.png",
+    "48": "image48.png",
+    "128": "image128.png"
+  },
   "action": {
     "default_icon": {
-      "16": "icon16.png",
-      "48": "icon48.png",
-      "128": "icon128.png"
+      "16": "image16.png",
+      "48": "image48.png",
+      "128": "image128.png"
     }
   },
   "content_scripts": [
